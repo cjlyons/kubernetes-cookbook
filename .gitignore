@@ -2,6 +2,16 @@
 **/node_modules
 **/npm-debug.log
 **/target
+**/.mvn
+
+### STS ###
+**/.apt_generated
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings
+**/.springBeans
+**/.sts4-cache
 
 # testing
 **/coverage
@@ -21,3 +31,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+### VS Code ###
+**/.vscode/

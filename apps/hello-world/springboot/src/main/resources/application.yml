@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: helloworld-spring
+  datasource: 
+    continue-on-error: true
+    url: jdbc:h2:mem:hellospringdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    
+server:
+  port: 9080
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      probes.enabled: true
+      show-details: always
+      show-components: always
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /hello-world/monitor
+      exposure:
+        include:
+        - health
+        - info
+
+## Configuring info endpoint
+info:
+  app:
+    name: ${spring.application.name}
+    description: Hello World Demo App
+    version: 1.0.0
+  java:
+    vendor:  ${java.specification.vendor}
+    version:  ${java.specification.version}
