@@ -1,0 +1,16 @@
+= Manage app deployments with stand-alone docker and kubernetes (minikube and openshift flavors)
+
+== Apps
+. tic-tac-toe: Simple UI. React app.
+. hello-world: Simple API. Node, spring-boot, and flask versions
+. reverseProxy: nginx reverse proxy to get the docker version of the single page app working
+
+== Docker
+. Build and deploy all of the apps use docker compose. 
+. Creates multiple replicas of the UI and API in order to verify that load balancing is working correctly
+
+== Minikube
+. Get deployment, routing, monitoring, etc working using minikube
+
+==OpenSHift
+. Get deployment, routing, monitoring, etc working using OpenShift

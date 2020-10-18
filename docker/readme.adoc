@@ -1,0 +1,58 @@
+= Manual docker build & deploy of all apps
+== "hello world" nodejs/express app
+. Build the docker image
+.. cd ..\apps\hello-world\node
+.. docker build -t helloworld/nodejs:1.0 .
+.. docker images
+. Run the docker image
+.. docker run --publish 127.0.0.1:8080:3100 --detach --name helloNode helloworld/nodejs:1.0
+. Test the docker image
+.. docker ps
+.. docker logs helloNode
+.. http://localhost:8080/hello-world/test
+.. http://localhost:8080/hello-world/health/ (or /live/ or /ready/)
+. clean up
+.. docker stop helloNode
+.. docker rm helloNode
+== "Tic Tac Toe" react app
+. Build the docker image
+.. cd ..\apps\tic-tac-toe
+.. docker build -t tictactoe/react:1.0 .
+.. docker images
+. Run the docker image
+.. docker run --publish 127.0.0.1:8000:80 --detach --name tictactoe tictactoe/react:1.0
+. Test the docker image
+.. docker ps
+.. docker logs tictactoe
+.. http://localhost:8000/
+.. http://localhost:8000/health/ (or /live/ or /ready/)
+.. Note expected "404" error when attempting call to "http://localhost:8000/hello-world" as routing is not configured for docker.
+. clean up
+.. docker stop tictactoe
+.. docker rm tictactoe
+== Reverse Proxy NGINX app
+. Build the docker image
+.. cd ..\apps\reverseProxy
+.. docker build -t reverseproxy/nginx:1.0 .
+.. docker images
+. Run the docker image
+.. docker run --publish 127.0.0.1:7000:80 --detach --name reverseProxy reverseproxy/nginx:1.0
+. Test the docker image
+.. docker ps
+.. docker logs reverseProxy
+.. http://localhost:7000/monitor/health/
+. Test the routing rules
+.. http://localhost:7000/tictactoe/
+.. http://localhost:7000/tictactoe/health/ (or /live/ or /ready/)
+.. http://localhost:7000/hello-world/
+.. http://localhost:7000/hello-world/health/ (or /live/ or /ready/)
+. clean up
+.. docker stop reverseProxy
+.. docker rm reverseProxy
+== Use docker-compose to describe this whole thing and enable scaling
+. Navigate to the "docker" directory
+. docker-compose up -d
+.. all containers should be running as defined above, just on random ports
+. docker-compose down
+
+

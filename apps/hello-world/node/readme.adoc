@@ -1,0 +1,25 @@
+= Node.js Hello World Application Setup
+
+== Setup
+. Create express app
+.. npm install -g express-generator
+.. npx express-generator -v pug
+.. just for fun, make the app listen on port 3100
+.. npm install
+.. npm start
+.. verify the app is serving at http://localhost:3100/hello-world
+. Add Health Checks
+.. npm install @cloudnative/health-connect --save
+.. Add a HealthChecker to app.js
+.. Register a Liveness check at "/live"
+.. Register a Health check at "/health"
+.. Register a Readiness check at "/ready"
+.. verify the app responds to health checks
+... http://localhost:3100/hello-world/monitor/live
+... http://localhost:3100/hello-world/monitor/ready
+... http://localhost:3100/hello-world/monitor/health
+. Add Logging
+.. npm install bunyan --save
+.. Create logger.js
+.. Export a Bunyan logger
+. Modify index.js for hello world "logic"

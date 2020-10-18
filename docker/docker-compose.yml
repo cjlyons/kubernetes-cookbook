@@ -1,0 +1,38 @@
+version: '3.8'
+# NOTE: In order to support "replicas", remove specific contianer names and use ephemeral ports
+services:
+  hellonode:
+    build: 
+      context: ../apps/hello-world/node
+    image: helloworld/nodejs:1.0
+    # container_name: helloNode
+    hostname: 127.0.0.1
+    ports: 
+      # - "8080:3100"
+      - "3100"
+    deploy:
+      mode: replicated
+      replicas: 2
+  tictactoe:
+    build: 
+      context: ../apps/tic-tac-toe
+    image: tictactoe/react:1.0
+    # container_name: tictactoe
+    hostname: 127.0.0.1
+    ports: 
+      # - "8000:80"
+      - "80"
+    deploy:
+      mode: replicated
+      replicas: 2
+  reverseproxy:
+    build: 
+      context: ../apps/reverseProxy
+    image: reverseproxy/nginx:1.0
+    container_name: reverseproxy
+    hostname: 127.0.0.1
+    ports: 
+      - "7000:80"
+    deploy:
+      mode: replicated
+      replicas: 1

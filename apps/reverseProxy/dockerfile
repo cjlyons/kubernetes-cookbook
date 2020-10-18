@@ -1,0 +1,6 @@
+# production environment
+FROM nginx:stable-alpine
+COPY /etc/nginx /etc/nginx
+COPY /usr/share/nginx/html /usr/share/nginx/html
+EXPOSE 7000
+CMD ["nginx", "-g", "daemon off;"]
