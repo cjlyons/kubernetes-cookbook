@@ -5,12 +5,14 @@
 .. Initialize using the spring boot initializer
 .. Enable actuator health endpoints
 .. just for fun, make the app listen on port 9080
-.. Build the app
-... mvn clean install
-.. Start the app
-... java -jar ./target/helloworld-0.0.1-SNAPSHOT.jar
-.. verify the app is serving at http://localhost:9080/hello-world/spring
-.. verify the app responds to health checks
-... http://localhost:9080/hello-world/monitor/health/liveness
-... http://localhost:9080/hello-world/monitor/health/readiness
-... http://localhost:9080/hello-world/monitor/health
+
+== Run
+. Build the app
+.. mvn clean install
+. Start the app
+.. java -jar ./target/helloworld-0.0.1-SNAPSHOT.jar
+. verify the app is serving at http://localhost:9080/hello-world/spring
+. verify the app responds to health checks
+.. http://localhost:9080/hello-world/monitor/health/liveness
+.. http://localhost:9080/hello-world/monitor/health/readiness
+.. http://localhost:9080/hello-world/monitor/health

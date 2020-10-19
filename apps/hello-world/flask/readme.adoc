@@ -1,0 +1,17 @@
+= Flask Hello World Application Setup
+
+== Setup
+. Use python 3.8
+. pip install flask
+. pip install healthz
+. Create a simple "hello.py" hello world app
+. Setup healthz liveness and readiness endpoints
+
+== Run
+. Start the app
+.. set FLASK_APP=hello.py
+.. flask run
+. verify the app is serving at http://localhost:5000/flask
+. verify the app responds to health checks
+.. http://localhost:5000/monitor/health/live
+.. http://localhost:5000/monitor/health/ready

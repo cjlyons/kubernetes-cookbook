@@ -34,3 +34,7 @@ yarn-error.log*
 
 ### VS Code ###
 **/.vscode/
+
+
+### Python ###
+**/__pycache__
