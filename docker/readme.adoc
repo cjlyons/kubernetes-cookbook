@@ -1,4 +1,5 @@
 = Manual docker build & deploy of all apps
+
 == "hello world" nodejs/express app
 . Build the docker image
 .. cd ..\apps\hello-world\node
@@ -14,6 +15,7 @@
 . clean up
 .. docker stop helloNode
 .. docker rm helloNode
+
 == "Tic Tac Toe" react app
 . Build the docker image
 .. cd ..\apps\tic-tac-toe
@@ -30,6 +32,7 @@
 . clean up
 .. docker stop tictactoe
 .. docker rm tictactoe
+
 == Reverse Proxy NGINX app
 . Build the docker image
 .. cd ..\apps\reverseProxy
@@ -49,6 +52,7 @@
 . clean up
 .. docker stop reverseProxy
 .. docker rm reverseProxy
+
 == Use docker-compose to describe this whole thing and enable scaling
 . Navigate to the "docker" directory
 . docker-compose up -d
