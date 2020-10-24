@@ -13,6 +13,26 @@ services:
     deploy:
       mode: replicated
       replicas: 2
+  hellospring:
+    build: 
+      context: ../apps/hello-world/springboot
+    image: helloworld/spring:1.0
+    hostname: 127.0.0.1
+    ports: 
+      - "9080"
+    deploy:
+      mode: replicated
+      replicas: 2
+  helloflask:
+    build: 
+      context: ../apps/hello-world/flask
+    image: helloworld/flask:1.0
+    hostname: 127.0.0.1
+    ports: 
+      - "5000"
+    deploy:
+      mode: replicated
+      replicas: 2
   tictactoe:
     build: 
       context: ../apps/tic-tac-toe

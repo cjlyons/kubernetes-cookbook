@@ -16,6 +16,39 @@
 .. docker stop helloNode
 .. docker rm helloNode
 
+== "hello world" python/flask app
+. Build the docker image
+.. cd ..\apps\hello-world\flask
+.. docker build -t helloworld/flask:1.0 .
+.. docker images
+. Run the docker image
+.. docker run --publish 127.0.0.1:5000:5000 --detach --name helloFlask helloworld/flask:1.0
+. Test the docker image
+.. docker ps
+.. docker logs helloFlask
+.. http://localhost:5000/test
+.. http://127.0.0.1:5000/monitor/health/ready (or /live)
+. clean up
+.. docker stop helloFlask
+.. docker rm helloFlask
+
+== "hello world" spring boot app
+. Build the docker image
+.. cd ..\apps\hello-world\spring
+.. docker build -t helloworld/spring:1.0 .
+.. docker images
+. Run the docker image
+.. docker run --publish 127.0.0.1:9080:9080 --detach --name helloSpring helloworld/spring:1.0
+. Test the docker image
+.. docker ps
+.. docker logs helloSpring
+.. http://localhost:9080/test
+.. http://127.0.0.1:9080/monitor/health
+.. http://127.0.0.1:9080/monitor/health/liveness (or /readiness)
+. clean up
+.. docker stop helloSpring
+.. docker rm helloSpring
+
 == "Tic Tac Toe" react app
 . Build the docker image
 .. cd ..\apps\tic-tac-toe
@@ -47,8 +80,11 @@
 . Test the routing rules
 .. http://localhost:7000/tictactoe/
 .. http://localhost:7000/tictactoe/health/ (or /live/ or /ready/)
-.. http://localhost:7000/hello-world/
+.. http://localhost:7000/hello-world/World
 .. http://localhost:7000/hello-world/health/ (or /live/ or /ready/)
+.. http://localhost:7000/hello-flask/World
+.. http://localhost:7000/hello-node/World
+.. http://localhost:7000/hello-spring/World
 . clean up
 .. docker stop reverseProxy
 .. docker rm reverseProxy

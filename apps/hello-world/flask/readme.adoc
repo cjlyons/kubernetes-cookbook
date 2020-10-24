@@ -3,7 +3,7 @@
 == Setup
 . Use python 3.8
 . pip install flask
-. pip install healthz
+. pip install flask-healthz
 . Create a simple "hello.py" hello world app
 . Setup healthz liveness and readiness endpoints
 

@@ -1,6 +1,6 @@
-FROM openjdk:11-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
+FROM openjdk:11
+RUN addgroup --system springgroup && adduser springuser --system && usermod -g springgroup springuser
+USER springuser:springgroup
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 EXPOSE 9080
