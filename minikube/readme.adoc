@@ -1,0 +1,15 @@
+= Minikube set & deploy of all apps
+
+== Set up minikube
+. Install minikube
+.. choco install minikube
+. Setup minikube
+.. setup-minikube.bat
+.. 16384 of mermory is used as that is what recommended for Istio, which i'll play with next
+. Verify
+.. minikube status
+... all should be "running"
+.. docker images
+... this should display the images running in k8s, not just the one base k8s image that docker knows about
+.. minikube dashboard
+... check out whats running on minikube in the browser window that this command opens
