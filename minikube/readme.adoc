@@ -4,8 +4,11 @@
 . Install minikube
 .. choco install minikube
 . Setup minikube
-.. setup-minikube.bat
-.. 16384 of mermory is used as that is what recommended for Istio, which i'll play with next
+.. 1-start-minikube.bat
+... this script creates a control plane node kubernetescookbook in cluster kubernetescookbook
+... 16384 of mermory is used as that is what is recommended for Istio, which i'll play with next
+... the current profile is set to "kubernetescookbook"
+... the current namespace is set to "dev"
 . Verify
 .. minikube status
 ... all should be "running"
@@ -13,3 +16,27 @@
 ... this should display the images running in k8s, not just the one base k8s image that docker knows about
 .. minikube dashboard
 ... check out whats running on minikube in the browser window that this command opens
+
+== Deploy applications
+. Make the local minikube registry available for use
+.. open a command prompt (2:cmd)
+.. Set up the minikube environment
+... @FOR /f "tokens=*" %i IN ('minikube -p kubernetescookbook docker-env') DO @%i
+.. Make the k8s registry accesible externally
+... docker run --rm -it --network=host alpine ash -c "apk add socat && socat TCP-LISTEN:32769,reuseaddr,fork TCP:host.docker.internal:32769"
+. Create images
+.. open another command prompt (3:cmd)
+.. navigate to the minikube folder
+.. 2-images-build-all.bat
+... This script just uses docker-compose to build all images
+. Move images to the local registry
+.. stay on the latest command prompt (3:cmd)
+.. 3-images-register-all.bat
+. Publish to k8s
+.. 4-images-deploy-all.bat
+. Test apps
+.. minikube tunnel
+.. test flask: http://127.0.0.1:8080/world
+.. test node: http://127.0.0.1:8081/hello-world/world
+.. test spring: http://127.0.0.1:8082/hello-world/world
+.. test react: http://127.0.0.1:8083/tictactoe/

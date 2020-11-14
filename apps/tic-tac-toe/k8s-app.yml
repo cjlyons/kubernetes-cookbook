@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tictactoe-react
+spec:
+  selector:
+    app: tictactoe-react
+  ports:
+  - port: 8084
+    targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tictactoe-react
+spec:
+  selector:
+    matchLabels:
+      app: tictactoe-react
+  template:
+    metadata:
+      labels:
+        app: tictactoe-react
+    spec:
+      containers:
+      - name: tictactoe-react
+        image: localhost:32769/tictactoe/react:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+          - name: ENV_VAR
+            value: ENV_VALUE
+        livenessProbe:
+          httpGet:
+            path: /monitor/health/liveness
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /monitor/health/readiness
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 20
