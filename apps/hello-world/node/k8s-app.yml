@@ -34,13 +34,13 @@ spec:
             value: ENV_VALUE
         livenessProbe:
           httpGet:
-            path: /monitor/live
+            path: /hello-world/monitor/live
             port: 3100
           initialDelaySeconds: 60
           periodSeconds: 20
         readinessProbe:
           httpGet:
-            path: /monitor/ready
+            path: /hello-world/monitor/ready
             port: 3100
           initialDelaySeconds: 60
           periodSeconds: 20

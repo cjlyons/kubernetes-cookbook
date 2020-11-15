@@ -27,6 +27,7 @@
 . Create images
 .. open another command prompt (3:cmd)
 .. navigate to the minikube folder
+.. if needed, build the spring boot project ( [1] cd ..\apps\hello-world\springboot [2] mvn clean install)
 .. 2-images-build-all.bat
 ... This script just uses docker-compose to build all images
 . Move images to the local registry
@@ -35,8 +36,12 @@
 . Publish to k8s
 .. 4-images-deploy-all.bat
 . Test apps
+.. open another command prompt (4:cmd)
 .. minikube tunnel
-.. test flask: http://127.0.0.1:8080/world
-.. test node: http://127.0.0.1:8081/hello-world/world
-.. test spring: http://127.0.0.1:8082/hello-world/world
-.. test react: http://127.0.0.1:8083/tictactoe/
+... this is necessary as minikube doesn't have any default ingress support
+.. navigate back to (3:cmd) and watch the pod status
+.. test the apps from a browser:
+... test flask: http://127.0.0.1:8080/world
+... test node: http://127.0.0.1:8081/hello-world/world
+... test spring: http://127.0.0.1:8082/hello-world/world
+... test react: http://127.0.0.1:8083/tictactoe/
